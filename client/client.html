@@ -5,12 +5,7 @@
 <script>
   var video = document.getElementById('video');
   console.dir(Hls.isSupported());
-    if(video.canPlayType('application/vnd.apple.mpegURL')){
-        console.log('MSE is NOT supported, this is probably an iOS device');
-            video.src = 'hls-summer/segmented/prog_index.m3u8';
-    video.addEventListener('loadedmetadata',function() {
-    });
-    } else if(Hls.isSupported()) {
+  if(Hls.isSupported()) {
       console.log('MSE is supported');
     var hls = new Hls();
     hls.loadSource('hls-summer/segmented/prog_index.m3u8');
@@ -18,6 +13,11 @@
     hls.on(Hls.Events.MANIFEST_PARSED,function() {
       video.play();
   });
+  } else if(video.canPlayType('application/vnd.apple.mpegURL')){
+        console.log('MSE is NOT supported, this is probably an iOS device');
+            video.src = 'hls-summer/segmented/prog_index.m3u8';
+    video.addEventListener('loadedmetadata',function() {
+    });
  }
  // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
  // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.

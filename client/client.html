@@ -5,7 +5,7 @@
 <script>
   var video = document.getElementById('video');
   console.dir(Hls.isSupported());
-    if(Hls.isSupported() && video.canPlayType('application/vnd.apple.mpegURL'){
+    if(Hls.isSupported() && video.canPlayType('application/vnd.apple.mpegURL')){
                console.log('MSE is supported and supports native HTTP Live Streaming Playback');
             video.src = 'hls-summer/segmented/prog_index.m3u8';
     video.addEventListener('loadedmetadata',function() {

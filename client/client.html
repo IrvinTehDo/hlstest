@@ -4,8 +4,12 @@
 <video id="video" controls></video>
 <script>
   var video = document.getElementById('video');
+    
+    var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+    
   console.dir(Hls.isSupported());
-    if(Hls.isSupported() && video.canPlayType('application/vnd.apple.mpegURL')){
+    if(Hls.isSupported() && video.canPlayType('application/vnd.apple.mpegURL') && !(isAndroid)){
                console.log('MSE is supported and supports native HTTP Live Streaming Playback');
             video.src = 'hls-summer/segmented/prog_index.m3u8';
     video.addEventListener('loadedmetadata',function() {

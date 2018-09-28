@@ -4,6 +4,7 @@
 <video id="video" controls></video>
 <script>
   var video = document.getElementById('video');
+  console.dir(Hls.isSupported());
     if(video.canPlayType('application/vnd.apple.mpegURL')){
         console.log('MSE is NOT supported, this is probably an iOS device');
             video.src = 'hls-summer/segmented/prog_index.m3u8';
